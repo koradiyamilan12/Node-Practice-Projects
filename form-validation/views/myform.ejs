@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Validation</title>
+</head>
+
+<body>
+  <% if(errors.length> 0) {%>
+    <div>
+      <div>
+        <ul>
+          <% errors.forEach(error=> { %>
+            <li>
+              <%= error.msg %>
+            </li>
+            <% }) %>
+        </ul>
+      </div>
+    </div>
+    <% } %>
+      <form action="/saveform" method="POST" class="p-3">
+
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" class="form-control" id="username" name="username">
+        </div>
+
+        <div class="mb-3">
+          <label for="useremail" class="form-label">Email</label>
+          <input type="email" class="form-control" id="useremail" name="useremail">
+        </div>
+
+        <div class="mb-3">
+          <label for="userpass" class="form-label">Password</label>
+          <input type="password" class="form-control" id="userpass" name="userpass">
+        </div>
+
+        <div class="mb-3">
+          <label for="userage" class="form-label">Age</label>
+          <input type="number" class="form-control" id="userage" name="userage" min="1">
+        </div>
+
+        <div class="mb-3">
+          <label for="city" class="form-label">City</label>
+          <select class="form-select" id="city" name="usercity">
+            <option value="">Select a city</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Goa">Goa</option>
+            <option value="Agra">Agra</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+      </form>
+
+</body>
+
+</html>
