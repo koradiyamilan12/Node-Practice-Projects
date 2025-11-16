@@ -1,0 +1,21 @@
+<%- include("header") %>
+
+        <table class="table">
+          <% items.forEach( item=> { %>
+            <tr>
+              <td>
+                <%= item.name _%>
+              </td>
+              <td>
+                <%= item.age _%>
+              </td>
+            </tr>
+            <% }) %>
+        </table>
+      </div>
+      <div class="col-6">
+        <img src="images/img.jpg" alt="">
+      </div>
+    </div>
+
+<%- include("footer") %>
