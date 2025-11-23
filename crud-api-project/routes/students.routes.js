@@ -39,8 +39,29 @@ const upload = multer({
 // Get All Students
 router.get("/", async (req, res) => {
   try {
-    const students = await Student.find()
-    res.status(200).json({ students, message: "get All Students successfully" })
+
+    const search = req.query.search || ""
+    const page = Number(req.query.page) || 1
+    const limit = Number(req.query.limit) || 5
+    const skip = (page - 1) * limit
+
+    const query = {
+      $or: [
+        { first_name: { $regex: search, $options: "i" } },
+        { last_name: { $regex: search, $options: "i" } }
+      ]
+    }
+
+    const total = await Student.countDocuments(query)
+    const students = await Student.find(query).skip(skip).limit(limit)
+    res.status(200).json({
+      students,
+      total,
+      page,
+      limit,
+      totalPage: Math.ceil(total / limit),
+      message: "get All Students successfully"
+    })
   } catch (err) {
     res.status(500).json({ message: err.message })
   }

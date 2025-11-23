@@ -1,32 +1,32 @@
 const express = require("express")
 const app = express()
-const router = express.Router()
+// const router = express.Router()
 
-const mymiddleware = (req, res, next) => {
-  const d = new Date()
-  console.log(`Date : ${d.getMinutes()} ${d.getHours()} ${d.getDate()} / ${d.getMonth()} ${req.method} ${req.url}`)
-  next()
-}
+// const mymiddleware = (req, res, next) => {
+//   const d = new Date()
+//   console.log(`Date : ${d.getMinutes()} ${d.getHours()} ${d.getDate()} / ${d.getMonth()} ${req.method} ${req.url}`)
+//   next()
+// }
 
-const myOtherMiddleware = (req, res, next) => {
-  console.log("Second Middleware")
-  next()
-}
+// const myOtherMiddleware = (req, res, next) => {
+//   console.log("Second Middleware")
+//   next()
+// }
 
 // router level middleware
 
-router.use((req, res, next) => {
-  console.log("router level middleware")
-  next()
-})
+// router.use((req, res, next) => {
+//   console.log("router level middleware")
+//   next()
+// })
 
 
 
-app.use(mymiddleware)
+// app.use(mymiddleware)
 
-router.get("/", (req, res) => {
-  res.send("<h1>Home Page</h1>")
-})
+// router.get("/", (req, res) => {
+//   res.send("<h1>Home Page</h1>")
+// })
 
 app.get("/", (req, res) => {
   res.send("<h1>Home Page</h1>")
@@ -46,7 +46,7 @@ app.use((err, req, res, next) => {
   next()
 })
 
-app.use("/test", router)
+// app.use("/test", router)
 
 app.listen(3000, () => {
   console.log("Server running on port 3000")
